@@ -56,26 +56,16 @@ function tokenize(line) {
             value: line.slice(3).trim()
         }
 
+      if(line.startsWith('$th')){
+        console.log('True')
+        return{
+          type:'THEADINGS',
+          value: line.slice(3).trim()
+        }
      
       }
 
-      if(line.startsWith('$th') && line.endsWith('$th')){
-        
-        return{
-          type:'THEADINGS',
-          value: line.slice(3,-3).trim()
-        }
-
-
     }
-
-      if(line.startsWith('$tv') && line.endsWith('$tv')){
-
-        return{
-          type:'TVALUES',
-          value:line.slice(3,-3).trim()
-        }
-      }
    
 
     return {
@@ -115,19 +105,6 @@ function Parser(text) {
     }
 }
 
-function TableDivider(line){
-  
-    values = line.split('|')
-    return values
-  
-
-  }
-
-  
-     
-    
-
-
 
 function Render(parsedText) {
 
@@ -162,24 +139,9 @@ function Render(parsedText) {
             text += '<p class="imgcap">' + line.value + '</p></div> \n'
         }
         if (line.type == 'THEADINGS'){
-            headings = TableDivider(line.value)
-            text += '<table border=1 class="tabletype" >'
-            text += '<tr>' 
-          for(let i=0;i<headings.length;i++){
-            text += '<th>' + headings[i] + '</th>'
-              
-            }
-          text += '</tr>'
+            headings = line.value.split('$th')
+          console.log(headings)
         }
-        if(line.type == 'TVALUES'){
-          values = TableDivider(line.value)
-          text += '<tr>'
-          for(let i = 0;i<values.length;i++){
-           text += '<td>' + values[i] + '</td>' 
-          }
-        }
-
-
     })
 
     document.getElementById('testdiv').innerHTML = text
@@ -201,7 +163,7 @@ dff
 ac $c
 
 $th Heading1 | Heading2 | Heading3 $th
-$tv Value1 | Value2 | Value3 $tv
+
 
 
 `
