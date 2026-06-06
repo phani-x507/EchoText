@@ -1,37 +1,13 @@
-<!DOCTYPE html>
-<html lang="en" data-theme='light'>
-<head  >
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" type="" href="./EchoTextCss.css"> 
-    <style>
-           </style>
-</head>
-<body>
-    <button id='themeToggle' >Dark</button>
-    <div id="testdiv">
-
-    </div>
-</body>
-
-<script src="./RichTextEngine.js"></script>
-<script>
-  const button = document.getElementById('themeToggle');
-   const html = document.documentElement;
-
-  button.addEventListener('click',()=>{
-    const currentTheme = html.getAttribute('data-theme');
-    
-    if (currentTheme === 'light'){
-      html.setAttribute('data-theme','dark')
-      button.textContent = "Light"
-    }else{
-      html.setAttribute('data-theme','light')
-      button.textContent = 'Dark'
-    }
-
-    
-  })
-  </script>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>echotext</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
