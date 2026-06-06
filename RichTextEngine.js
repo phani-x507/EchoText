@@ -59,6 +59,15 @@ function tokenize(line) {
 
   }
 
+
+  if (line.startsWith('$table')) {
+    return {
+      type: 'TABLETAG',
+      value: ''
+    }
+  }
+
+
   if (line.startsWith('$th') && line.endsWith('$th')) {
 
     return {
@@ -132,6 +141,7 @@ function TableDivider(line) {
 function Render(parsedText) {
 
   text = ''
+  tableTagCounter = 0
   // console.log(parsedText)
   parsedText.children.map((line, index) => {
     if (line.type == "TITLE") {
@@ -161,9 +171,21 @@ function Render(parsedText) {
     if (line.type == "CODESTOP") {
       text += '<p class="imgcap">' + line.value + '</p></div> \n'
     }
+    if (line.type == 'TABLETAG') {
+      if (tableTagCounter == 0) {
+        text += '<table border=1 class="tabletype" >'
+        tableTagCounter += 1
+      }
+      else {
+        text += '</table>'
+        tableTagCounter -= 1
+      }
+
+      console.log(tableTagCounter)
+    }
+
     if (line.type == 'THEADINGS') {
       headings = TableDivider(line.value)
-      text += '<table border=1 class="tabletype" >'
       text += '<tr>'
       for (let i = 0; i < headings.length; i++) {
         text += '<th>' + headings[i] + '</th>'
@@ -179,18 +201,22 @@ function Render(parsedText) {
       }
     }
 
-
   })
+
 
   document.getElementById('testdiv').innerHTML = text
 
+
+  function TableCreator(lines) {
+
+  }
 
 }
 
 text = `##This is title
 this is enter
 ###This is Subtitle
-- Item1
+- Item1                              
 - Item2
 ##This is another SubTitle
 - This is another 
@@ -200,10 +226,12 @@ dff
 dff
 ac $c
 
+$table 
 $th Heading1 | Heading2 | Heading3 $th
-$tv Value1 | Value2 | Value3 $tv
-
-
+$tv Value1 | Value2 | Value6 $tv
+$tv Value4 | Value5 | Value6 $tv
+$tv Value6 | Value7 | Value8 $tv
+$table
 `
 
 console.log(Parser(text).children)
