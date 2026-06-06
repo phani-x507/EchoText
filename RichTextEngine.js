@@ -32,9 +32,12 @@ function tokenize(line) {
   }
 
   if (line.startsWith('img=')) {
+    let ImgData = line.split('imgcap=')
+    console.log(ImgData)
     return {
       type: 'IMAGE',
-      value: line.slice(4).trim()
+      value: ImgData[0].slice(4).trim(),
+      ImgCaption: ImgData[1].trim()
     }
   }
   if (line.startsWith('imgcap=')) {
@@ -134,6 +137,8 @@ function TableDivider(line) {
 
 
 
+var ast = []
+console.log(ast)
 
 
 
@@ -142,16 +147,79 @@ function Render(parsedText) {
 
   text = ''
   tableTagCounter = 0
+
+  let isCentered = false;
+
+  function StyleChecker(line) {
+    centerCounter = 0
+    // Seperate with the Spaces
+    // Identify Each Line has Stars
+    // Apply Style to them
+    // Join the String
+
+    line = line.split(' ')
+
+    for (let i = 0; i < line.length; i++) {
+      if (line[i].startsWith('**')) {
+        line[i] = '<b>' + line[i].slice(2)
+        console.log(line[i])
+      } if (line[i].endsWith('**')) {
+        line[i] = line[i].slice(0, -2) + '</b>'
+        console.log(line[i])
+      }
+      if (line[i].startsWith('<$i>')) {
+        line[i] = '<i>' + line[i].slice(4)
+        console.log(line[i])
+      } if (line[i].endsWith('<$i>')) {
+        line[i] = line[i].slice(0, -4) + '</i>'
+        console.log(line[i])
+      }
+      if (line[i].startsWith('<$h>')) {
+        line[i] = '<span class= "highlightedText">' + line[i].slice(4)
+        console.log(line[i])
+      } if (line[i].endsWith('<$h>')) {
+        line[i] = line[i].slice(0, -4) + '</span>'
+        console.log(line[i])
+      }
+
+      if (line[i] === '$m') {
+        line[i] = isCentered ? '</center>' : '<center>';
+        isCentered = !isCentered;
+      }
+
+
+
+
+
+    }
+
+
+
+
+    return line.join(' ')
+  }
+
   // console.log(parsedText)
   parsedText.children.map((line, index) => {
+
+    // This is for Tree Structure for The Headings to Navigate
+    line.value = StyleChecker(line.value)
+    let HashId = ''
+    if (line.type == 'TITLE' || line.type == 'SUBTITLE' || line.type == 'MINITITLE') {
+      HashId = line.value.split(' ').join('-')
+      ast.push({ id: HashId, type: line.type })
+
+    }
     if (line.type == "TITLE") {
-      text += '<h1>' + line.value + '</h1> \n'
+
+      text += '<h1 id=" ' + HashId + '">' + line.value + '</h1> \n'
     }
     if (line.type == "SUBTITLE") {
-      text += '<h2>' + line.value + '</h2> \n'
+
+      text += '<h2  id=" ' + HashId + '">' + line.value + '</h2> \n'
     }
     if (line.type == "MINITITLE") {
-      text += '<h3>' + line.value + '</h3> \n'
+      text += '<h3 id=" ' + HashId + '">' + line.value + '</h3> \n'
     }
     if (line.type == "TEXT") {
       text += '<p>' + line.value + '</p> \n'
@@ -160,7 +228,10 @@ function Render(parsedText) {
       text += '<p> ⟶ ' + line.value + '</p> \n'
     }
     if (line.type == "IMAGE") {
+      text += '<div class="ImgDiv">'
       text += '<img src="' + line.value + '"/>'
+      text += '<p class="imgcap">' + line.ImgCaption + '</p> \n'
+      text += '</div>'
     }
     if (line.type == "IMGCAPTION") {
       text += '<p class="imgcap">' + line.value + '</p> \n'
@@ -207,20 +278,20 @@ function Render(parsedText) {
   document.getElementById('testdiv').innerHTML = text
 
 
-  function TableCreator(lines) {
 
-  }
 
 }
 
-text = `##This is title
-this is enter
+text = `#This is
+this is **enter <$i>and<$i>  this is the bold text** but from **here it should be bold**  
+$m
 ###This is Subtitle
+$m
 - Item1                              
 - Item2
 ##This is another SubTitle
-- This is another 
-img=https://cdn-icons-png.flaticon.com/512/44/44621.png
+- This <$h>is<$h> <$h>another<$h> 
+img=https://cdn-icons-png.flaticon.com/512/44/44621.png imgcap= This is the Image Caption
 $c sdf
 dff
 dff
@@ -228,10 +299,16 @@ ac $c
 
 $table 
 $th Heading1 | Heading2 | Heading3 $th
-$tv Value1 | Value2 | Value6 $tv
+$tv Value1 | **Value2** | Value6 $tv
 $tv Value4 | Value5 | Value6 $tv
 $tv Value6 | Value7 | Value8 $tv
 $table
+
+
+#This is 2nd Introduction Title
+
+
+
 `
 
 console.log(Parser(text).children)

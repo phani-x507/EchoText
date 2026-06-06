@@ -1,0 +1,15 @@
+ .codebox{
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 12;
+            font-style: italic;
+            background-color: rgb(235, 233, 242);
+            padding: 10px 30px;
+            border-radius: 30px;
+            border: 1px solid rgb(214, 214, 214);
+        }
+      .highlightedText{
+        background-color:red;
+        padding:5px;
+        border-radius:10px
+    }
+
