@@ -1,11 +1,17 @@
 :root[data-theme="light"] {
   --bg-color: white;
   --text-color: black;
+  --nav-bg-color: "#5170ff";
+  --button-bg-color: "#070606";
+  --button-text-color: "white";
 }
 
 :root[data-theme="dark"] {
   --bg-color: black;
   --text-color: white;
+  --nav-bg-color: "#2d2c34";
+  --button-bg-color: "#ededed";
+  --button-text-color: "#004aad";
 }
 
 body {
