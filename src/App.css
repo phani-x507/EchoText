@@ -16,43 +16,56 @@
   --borders: 1px solid transparent;
 }
 :root[data-theme="light"] {
-  --bg-color: #f6f6f6;
+  --bg-color: radial-gradient(
+    circle,
+    rgba(174, 183, 238, 1) 0%,
+    rgba(255, 255, 255, 1) 27%,
+    rgba(250, 250, 250, 1) 55%,
+    rgba(255, 255, 255, 1) 68%,
+    rgba(255, 235, 235, 1) 81%,
+    rgba(255, 255, 255, 1) 100%
+  );
   --text-color: black;
   --nav-bg-color: linear-gradient(
     90deg,
-    rgba(2, 0, 36, 0.35) 0%,
-    rgba(9, 9, 121, 0.35) 35%,
-    rgba(0, 212, 255, 0.35) 100%
+    rgba(220, 220, 220, 0.35) 0%,
+    rgba(240, 240, 240, 0.35) 35%,
+    rgba(250, 250, 255, 0.35) 100%
   );
   --nav-shadow: 0px 0px 18px 1px rgb(237, 235, 235);
   --button-bg-color: #070606;
   --button-text-color: white;
-  --card-bg: #ffffff;
+  --card-bg: rgb(255, 255, 255, 0.45);
   --card-text: black;
   --nav-border: 1px solid rgb(222, 222, 222);
   --cards-border: 1px solid rgb(219, 219, 219);
   --codebox-bg-color: lavender;
   --codebox-text-color: black;
-
+  --card-shadow: 0px 0px 150px 1px rgb(200, 200, 200);
   --canvas-text-color: black;
 }
 
 :root[data-theme="dark"] {
-  --bg-color: black;
-  --text-color: white;
-  --nav-bg-color: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 0.35) 0%,
-    rgba(9, 9, 121, 0.35) 35%,
-    rgba(0, 212, 255, 0.35) 100%
+  --bg-color: radial-gradient(
+    circle,
+    rgba(2, 0, 26, 1) 0%,
+    rgba(6, 6, 46, 1) 28%,
+    rgba(1, 1, 61, 1) 66%,
+    rgba(6, 0, 36, 1) 81%,
+    rgba(0, 0, 28, 1) 100%
   );
+  --text-color: white;
+  --nav-bg-color: rgb(100, 100, 100, 0.3);
   --button-bg-color: #ededed;
   --button-text-color: #004aad;
-  --card-bg: #2d2c34;
+  --card-bg: rgb(40, 40, 40, 0.5);
   --card-text: white;
-  --codebox-bg-color: lavender;
-  --codebox-text-color: black;
+  --codebox-bg-color: rgb(0, 0, 0, 0.5);
+  --codebox-text-color: white;
   --canvas-text-color: white;
+  --nav-border: 1px solid transparent;
+  --cards-border: 1px solid transparent;
+  --card-shadow: 0px 0px 195px 1px rgb(10, 10, 10);
 }
 
 body {
@@ -62,11 +75,11 @@ body {
 }
 
 .navBar {
-  height: 60px;
+  height: 50px;
   width: 100vw;
   background: var(--nav-bg-color);
   /* border-radius: 30px; */
-  box-shadow: var(--nav-shadow);
+  /* box-shadow: var(--nav-shadow); */
   /* margin: auto; */
   backdrop-filter: blur(1px);
   position: fixed;
@@ -81,17 +94,17 @@ body {
   display: flex;
   border: var(--borders);
   width: fit-content;
-  align-items: end;
+  align-items: center;
 }
 
 .navBar-left > h1 {
   font-family: var(--mono-font);
-  color: white;
+  color: cornflowerblue;
   padding-left: 15px;
 }
 
 .navBar-left p {
-  color: #c1ff72;
+  color: lightseagreen;
   font-family: var(--cursive-font);
   font-weight: 600;
   font-size: 16px;
@@ -105,15 +118,15 @@ body {
 }
 
 .navBar button {
-  margin: 10px;
+  margin: 5px;
   min-width: 80px;
-  height: 40px;
+  height: 32px;
   border: var(--btn-border);
   border-radius: var(--btn-border-radius);
   background-color: var(--button-bg-color);
   color: var(--button-text-color);
   padding: 10px;
-  font-size: 13px;
+  font-size: 11px;
   font-family: var(--mono-font);
 }
 
@@ -133,10 +146,10 @@ body {
   color: var(--text-color);
   border: var(--cards-border);
   border-radius: var(--card-border-radius);
-  box-shadow: var(--nav-shadow);
+  box-shadow: var(--card-shadow);
   padding: 20px;
   overflow-y: scroll;
-  margin-top: 55px;
+  margin-top: 45px;
   /* This line is used to make scrollbar inside the box when usewd border border-radius too much; */
   clip-path: inset(0 round var(--card-border-radius));
 }
@@ -152,7 +165,9 @@ body {
   line-clamp: 1;
   overflow: hidden;
 }
-
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
 .canvas-outer {
   border: var(--borders);
   overflow-y: scroll;
@@ -168,13 +183,13 @@ body {
 .canvasDiv {
   background-color: var(--card-bg);
   color: var(--text-color);
-  margin-top: 55px;
+  margin-top: 45px;
   border: var(--cards-border);
   width: 90%;
   aspect-ratio: 1/1.4142;
   padding: 20px;
   border-radius: var(--card-border-radius);
-  box-shadow: var(--nav-shadow);
+  box-shadow: var(--card-shadow);
   font-family: var(--sans-font);
   box-sizing: border-box;
 
