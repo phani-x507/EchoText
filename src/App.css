@@ -6,25 +6,31 @@
   --marker-font: "Permanent Marker", cursive;
   --btn-border-radius: 10px;
   --btn-border: 1px solid transparent;
-  --card-border-radius: 50px;
+  --card-border-radius: 00px;
   --font-scale: 2px;
 
   --canvas-h1-size: 24px;
   --canvas-h2-size: 20px;
   --canvas-h3-size: 17px;
   --canvas-p-size: 14px;
-  --borders: 1px solid rgb(200, 200, 200);
+  --borders: 1px solid transparent;
 }
 :root[data-theme="light"] {
   --bg-color: #f6f6f6;
   --text-color: black;
-  --nav-bg-color: rgb(100, 100, 100, 0.35);
-  --nav-shadow: 0px 0px 12px 1px #c4c4c4;
+  --nav-bg-color: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 0.35) 0%,
+    rgba(9, 9, 121, 0.35) 35%,
+    rgba(0, 212, 255, 0.35) 100%
+  );
+  --nav-shadow: 0px 0px 18px 1px rgb(237, 235, 235);
   --button-bg-color: #070606;
   --button-text-color: white;
   --card-bg: #ffffff;
   --card-text: black;
-
+  --nav-border: 1px solid rgb(222, 222, 222);
+  --cards-border: 1px solid rgb(219, 219, 219);
   --codebox-bg-color: lavender;
   --codebox-text-color: black;
 
@@ -34,7 +40,12 @@
 :root[data-theme="dark"] {
   --bg-color: black;
   --text-color: white;
-  --nav-bg-color: #2d2c34;
+  --nav-bg-color: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 0.35) 0%,
+    rgba(9, 9, 121, 0.35) 35%,
+    rgba(0, 212, 255, 0.35) 100%
+  );
   --button-bg-color: #ededed;
   --button-text-color: #004aad;
   --card-bg: #2d2c34;
@@ -47,20 +58,23 @@
 body {
   background: var(--bg-color);
   color: var(--text-color);
+  overflow: hidden;
 }
 
 .navBar {
-  height: 75px;
-  width: 98vw;
-  background-color: var(--nav-bg-color);
-  border-radius: 30px;
+  height: 60px;
+  width: 100vw;
+  background: var(--nav-bg-color);
+  /* border-radius: 30px; */
   box-shadow: var(--nav-shadow);
-  margin: auto;
+  /* margin: auto; */
   backdrop-filter: blur(1px);
-  margin-top: -8px;
   position: fixed;
+  top: 0;
+  left: 0;
   display: flex;
   justify-content: space-between;
+  border: var(--nav-border);
 }
 
 .navBar-left {
@@ -110,20 +124,19 @@ body {
   grid-template-columns: 250px auto;
   border: var(--borders);
   /* position: fixed; */
-  margin-top: 49px;
-  height: calc(100vh - 95px);
+  height: 98vh;
 }
 
 .canvas-abs {
   min-width: 250px;
   background-color: var(--card-bg);
   color: var(--text-color);
-  border: var(--borders);
+  border: var(--cards-border);
   border-radius: var(--card-border-radius);
   box-shadow: var(--nav-shadow);
   padding: 20px;
-  height: calc(100vh - 150px);
   overflow-y: scroll;
+  margin-top: 55px;
   /* This line is used to make scrollbar inside the box when usewd border border-radius too much; */
   clip-path: inset(0 round var(--card-border-radius));
 }
@@ -155,8 +168,8 @@ body {
 .canvasDiv {
   background-color: var(--card-bg);
   color: var(--text-color);
-  margin-top: 15px;
-  border: var(--borders);
+  margin-top: 55px;
+  border: var(--cards-border);
   width: 90%;
   aspect-ratio: 1/1.4142;
   padding: 20px;

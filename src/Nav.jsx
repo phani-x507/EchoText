@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 export default function Nav() {
-  const [theme, setThame] = useState("light");
+  const [theme, setThame] = useState("🌓 dark");
   const ButtonHandler = () => {
     const html = document.documentElement;
     const theme = html.getAttribute("data-theme");
     console.log(theme);
     if (theme == "light") {
       html.setAttribute("data-theme", "dark");
-      setThame("dark");
+      setThame("☀️ light");
     } else {
       html.setAttribute("data-theme", "light");
-      setThame("light");
+      setThame("🌓 dark");
     }
   };
   return (
@@ -24,6 +24,8 @@ export default function Nav() {
 
         <div className="navBar-right">
           <center>
+            <button onClick={ButtonHandler}>{theme}</button>
+
             <button>Render</button>
             <button type="">Print</button>
             <button type="">Help</button>
@@ -31,7 +33,6 @@ export default function Nav() {
           </center>
         </div>
       </div>
-      <button onClick={ButtonHandler}>{theme}</button>
     </>
   );
 }

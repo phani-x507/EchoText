@@ -25,6 +25,10 @@ export default function Canvas() {
     <>
       <div className="canvas-main">
         <div className="canvas-abs">
+          <p>
+            <b>Abstract Syntax Tree</b>
+          </p>
+          <hr />
           <p>This is the title 1</p>
           <p>This is the Second Title and this is Long</p>
           <p>
