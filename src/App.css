@@ -1,20 +1,209 @@
+@import url("https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Cursive:wght@400..700&family=Google+Sans+Code:ital,wght,MONO@0,300..800,1;1,300..800,1&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Permanent+Marker&display=swap");
+:root {
+  --cursive-font: "Edu NSW ACT Cursive", cursive;
+  --mono-font: "Google Sans Code", monospace;
+  --sans-font: "Google Sans", sans-serif;
+  --marker-font: "Permanent Marker", cursive;
+  --btn-border-radius: 10px;
+  --btn-border: 1px solid transparent;
+  --card-border-radius: 50px;
+  --font-scale: 2px;
+
+  --canvas-h1-size: 24px;
+  --canvas-h2-size: 20px;
+  --canvas-h3-size: 17px;
+  --canvas-p-size: 14px;
+  --borders: 1px solid rgb(200, 200, 200);
+}
 :root[data-theme="light"] {
-  --bg-color: white;
+  --bg-color: #f6f6f6;
   --text-color: black;
-  --nav-bg-color: "#5170ff";
-  --button-bg-color: "#070606";
-  --button-text-color: "white";
+  --nav-bg-color: rgb(100, 100, 100, 0.35);
+  --nav-shadow: 0px 0px 12px 1px #c4c4c4;
+  --button-bg-color: #070606;
+  --button-text-color: white;
+  --card-bg: #ffffff;
+  --card-text: black;
+
+  --codebox-bg-color: lavender;
+  --codebox-text-color: black;
+
+  --canvas-text-color: black;
 }
 
 :root[data-theme="dark"] {
   --bg-color: black;
   --text-color: white;
-  --nav-bg-color: "#2d2c34";
-  --button-bg-color: "#ededed";
-  --button-text-color: "#004aad";
+  --nav-bg-color: #2d2c34;
+  --button-bg-color: #ededed;
+  --button-text-color: #004aad;
+  --card-bg: #2d2c34;
+  --card-text: white;
+  --codebox-bg-color: lavender;
+  --codebox-text-color: black;
+  --canvas-text-color: white;
 }
 
 body {
   background: var(--bg-color);
   color: var(--text-color);
+}
+
+.navBar {
+  height: 75px;
+  width: 98vw;
+  background-color: var(--nav-bg-color);
+  border-radius: 30px;
+  box-shadow: var(--nav-shadow);
+  margin: auto;
+  backdrop-filter: blur(1px);
+  margin-top: -8px;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navBar-left {
+  display: flex;
+  border: var(--borders);
+  width: fit-content;
+  align-items: end;
+}
+
+.navBar-left > h1 {
+  font-family: var(--mono-font);
+  color: white;
+  padding-left: 15px;
+}
+
+.navBar-left p {
+  color: #c1ff72;
+  font-family: var(--cursive-font);
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.navBar-right {
+  border: var(--borders);
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.navBar button {
+  margin: 10px;
+  min-width: 80px;
+  height: 40px;
+  border: var(--btn-border);
+  border-radius: var(--btn-border-radius);
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
+  padding: 10px;
+  font-size: 13px;
+  font-family: var(--mono-font);
+}
+
+/* This is the section for canvas */
+
+.canvas-main {
+  display: grid;
+  grid-template-columns: 250px auto;
+  border: var(--borders);
+  /* position: fixed; */
+  margin-top: 49px;
+  height: calc(100vh - 95px);
+}
+
+.canvas-abs {
+  min-width: 250px;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border: var(--borders);
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--nav-shadow);
+  padding: 20px;
+  height: calc(100vh - 150px);
+  overflow-y: scroll;
+  /* This line is used to make scrollbar inside the box when usewd border border-radius too much; */
+  clip-path: inset(0 round var(--card-border-radius));
+}
+
+.canvas-abs p {
+  font-family: var(--sans-font);
+  margin: 6px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1; /* Specify your line limit here */
+
+  /* Modern standard properties */
+  line-clamp: 1;
+  overflow: hidden;
+}
+
+.canvas-outer {
+  border: var(--borders);
+  overflow-y: scroll;
+  margin-left: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.canvas-fontscale {
+  position: fixed;
+  right: 30px;
+}
+.canvasDiv {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  margin-top: 15px;
+  border: var(--borders);
+  width: 90%;
+  aspect-ratio: 1/1.4142;
+  padding: 20px;
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--nav-shadow);
+  font-family: var(--sans-font);
+  box-sizing: border-box;
+
+  min-width: 620px;
+}
+
+.canvasDiv h1 {
+  color: var(--canvas-text-color);
+  font-size: calc(var(--canvas-h1-size) + var(--font-scale));
+}
+.canvasDiv h2 {
+  color: var(--canvas-text-color);
+  font-size: calc(var(--canvas-h2-size) + var(--font-scale));
+}
+.canvasDiv h3 {
+  color: var(--canvas-text-color);
+  font-size: calc(var(--canvas-h3-size) + var(--font-scale));
+}
+.canvasDiv p {
+  color: var(--canvas-text-color);
+  font-size: calc(var(--canvas-p-size) + var(--font-scale));
+}
+
+.ImgDiv {
+  border: var(--borders);
+  margin: auto;
+  max-height: 400px;
+
+  display: inline-block;
+}
+.ImgDiv img {
+  max-height: 380px;
+}
+.ImgDiv p {
+  font-style: italic;
+  font-size: calc(10px + var(--font-scale));
+  text-align: center;
+}
+
+.codebox {
+  padding: 5px 18px 5px 18px;
+  background-color: var(--codebox-bg-color);
+  color: var(--codebox-text-color);
+  border-radius: var(--btn-border-radius);
 }
