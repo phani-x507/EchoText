@@ -14,6 +14,7 @@ export function Render(Text) {
   var tableTagCounter = 0;
 
   let isCentered = false;
+  let isHighlighted = false;
 
   function StyleChecker(line) {
     // Seperate with the Spaces
@@ -40,15 +41,21 @@ export function Render(Text) {
         line[i] = line[i].slice(0, -4) + "</i>";
         console.log(line[i]);
       }
-      if (line[i].startsWith("<$h>")) {
-        line[i] = '<span class= "highlightedText">' + line[i].slice(4);
-        console.log(line[i]);
+      if (line[i].includes("<$h>")) {
+        line[i] = isHighlighted
+          ? '<span class= "highlightedText">' + line[i].slice(4)
+          : line[i].slice(0, -4) + "</span>";
+        isHighlighted = !isHighlighted;
       }
-      if (line[i].endsWith("<$h>")) {
-        line[i] = line[i].slice(0, -4) + "</span>";
-        console.log(line[i]);
-      }
-
+      // if (line[i].startsWith("<$h>")) {
+      //   line[i] = '<span class= "highlightedText">' + line[i].slice(4);
+      //   console.log(line[i]);
+      // }
+      // if (line[i].endsWith("<$h>")) {
+      //   line[i] = line[i].slice(0, -4) + "</span>";
+      //   console.log(line[i]);
+      // }
+      //
       if (line[i] === "$m") {
         line[i] = isCentered ? "</center>" : "<center>";
         isCentered = !isCentered;

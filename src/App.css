@@ -221,7 +221,8 @@ body {
   width: 100%;
   border: var(--canvas-table-border);
   padding: 10px 0px 12px 0px;
-  border-radius: 30px;
+  border-radius: 30px !important;
+  border-collapse: collapse;
 }
 
 .canvasDiv table tr {
@@ -229,12 +230,12 @@ body {
 }
 .canvasDiv table tr td {
   padding: 10px;
-  border-bottom: var(--canvas-table-border);
+  border: var(--canvas-table-border);
 }
 
 .canvasDiv table tr th {
   padding: 10px;
-  border-bottom: var(--canvas-table-border);
+  border: var(--canvas-table-border);
 }
 
 .canvasDiv h1 {
@@ -253,7 +254,11 @@ body {
   color: var(--canvas-text-color);
   font-size: calc(var(--canvas-p-size) + var(--font-scale));
 }
-
+.highlightedText {
+  background-color: lavender;
+  color: blue;
+  border-radius: 20px;
+}
 .ImgDiv {
   border: var(--borders);
   margin: auto;

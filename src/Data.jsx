@@ -1,18 +1,19 @@
-export const Data = {
-  type: "Document",
-  text: `# Student Identification and Reporting System (SIRS)
+export const Data = [
+  {
+    type: "Document",
+    text: `# Student Identification and Reporting System (SIRS)
 
 ## Introduction
 
-The Student Identification and Reporting System (SIRS) is an intelligent surveillance and communication platform designed to enhance student safety, institutional security, and communication between educational institutions and parents. The system utilizes advanced facial recognition technology and artificial intelligence to identify students automatically and generate real-time reports regarding their activities within the campus environment.
-
+The Student **Identification** and **Reporting System (SIRS)** is an intelligent surveillance and communication platform designed to enhance student safety, institutional security, and communication between educational institutions and parents. The system utilizes advanced facial recognition technology and artificial intelligence to identify students automatically and generate real-time reports regarding their activities within the campus environment.
+img=https://blsworldschool.com/uploads/transport/1.webp imgcap= 1.1 class room facing board 
 Educational institutions often face challenges in monitoring student attendance, tracking student movement, and ensuring safety within campus premises. Traditional methods of attendance and monitoring require significant manual effort and are prone to errors. SIRS addresses these challenges by automating student identification using facial recognition and providing timely notifications to parents and faculty members.
 
-The system combines computer vision, deep learning, web technologies, and conversational AI to create a comprehensive platform capable of recognizing students, maintaining records, and facilitating communication between stakeholders. By leveraging modern technologies, the system improves operational efficiency while maintaining high standards of security and transparency.
+The system combines **computer vision, deep learning, web technologies, and conversational AI** to create a comprehensive platform capable of recognizing students, maintaining records, and facilitating communication between stakeholders. By leveraging modern technologies, the system improves operational efficiency while maintaining high standards of security and transparency.
 
 ## Objectives
 
-The primary objective of the Student Identification and Reporting System is to automate the process of student identification and reporting. The system aims to reduce manual intervention while improving accuracy and reliability.
+The primary objective of the <$i>Student Identification and Reporting System<$i> is to <$h> automate the process <$h> of student identification and reporting. The system aims to reduce manual intervention while improving accuracy and reliability.
 
 * Automate student identification using facial recognition.
 * Improve campus security through continuous monitoring.
@@ -27,7 +28,7 @@ The architecture of the Student Identification and Reporting System consists of 
 
 ### Face Recognition Module
 
-The face recognition module serves as the core component of the system. It captures student images through cameras and processes them using the DeepFace facial recognition framework. The system compares captured faces with stored student records and determines the identity of the individual with high accuracy.
+The face recognition module serves as the core **component** of the system . It captures student images through cameras and processes them using the DeepFace facial recognition framework. The system compares captured faces with stored student records and determines the identity of the individual with high accuracy.
 
 The module performs image preprocessing, facial feature extraction, and face matching operations. Deep learning algorithms are utilized to improve recognition performance under varying lighting conditions and facial expressions.
 
@@ -54,18 +55,14 @@ Echo AI can answer queries related to attendance, student status, academic infor
 The Student Identification and Reporting System employs a modern technology stack to ensure scalability, reliability, and performance.
 
 $table
-$th Technology $th
-$th Purpose $th
-$tv React.js $tv
-$tv Frontend Development $tv
-$tv Python $tv
-$tv Backend Processing $tv
-$tv DeepFace $tv
-$tv Facial Recognition $tv
-$tv Machine Learning $tv
-$tv Student Identification $tv
-$tv REST APIs $tv
-$tv System Communication $tv
+$th Technology | Purpose $th
+
+$tv React.js | Frontend Development $tv
+$tv Python | Backend Processing  $tv
+$tv DeepFace | Facial Recognition $tv
+$tv Machine Learning | Student Identification $tv
+$tv REST APIs | System Communication  $tv
+$table
 
 The frontend is developed using React.js, which provides an interactive and responsive user interface. The backend is implemented using Python due to its extensive support for artificial intelligence and machine learning libraries.
 
@@ -130,4 +127,9 @@ The use of DeepFace for facial recognition and Echo AI for intelligent communica
 
 As artificial intelligence and computer vision technologies continue to evolve, the Student Identification and Reporting System can be expanded further to provide even more advanced features, making it a valuable solution for the future of smart educational environments.
 `,
-};
+  },
+  {
+    type: "Document",
+    text: ``,
+  },
+];

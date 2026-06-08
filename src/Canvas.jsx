@@ -12,7 +12,7 @@ export default function Canvas() {
   ]);
 
   useEffect(() => {
-    let data = Data.text;
+    let data = Data[0].text;
 
     console.log(data);
     let RenderedText = Render(data);
