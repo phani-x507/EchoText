@@ -6,11 +6,18 @@ import parse from "html-react-parser";
 export default function Canvas() {
   const [text, setText] = useState("");
   const [fontScale, setFontScale] = useState(4);
+
+  const [Ast, setAst] = useState([
+    { id: "Content-Not-Found", type: "NOTHING" },
+  ]);
+
   useEffect(() => {
     let data = Data.text;
 
     console.log(data);
-    let RenderedData = Render(data);
+    let RenderedText = Render(data);
+    let RenderedData = RenderedText[0];
+    setAst(RenderedText[1]);
     setText(RenderedData);
     console.log(RenderedData);
   }, []);
@@ -21,6 +28,45 @@ export default function Canvas() {
   const fontDecreaseHandler = () => {
     setFontScale(fontScale - 2);
   };
+
+  const AstComponent = () => {
+    console.log(Ast);
+    const GetTitleSpacing = (id, type) => {
+      if (type == "TITLE") {
+        return <a href={"#" + id}>{id.split("-").join(" ")}</a>;
+      }
+
+      if (type == "SUBTITLE") {
+        return (
+          <a href={"#" + id}>
+            {" "}
+            <small className="small">-</small> {id.split("-").join(" ")}
+          </a>
+        );
+      }
+
+      if (type == "MINITITLE") {
+        return (
+          <a href={"#" + id}>
+            &nbsp;&nbsp; &nbsp;<small className="small">-</small>{" "}
+            {id.split("-").join(" ")}
+          </a>
+        );
+      }
+    };
+    return (
+      <>
+        {Ast.map((item, index) => (
+          <>
+            {GetTitleSpacing(item.id, item.type)}
+            {/* <a href={"#" + item.id}>{getTitleSpacing(item.id, item.type)} </a> */}
+          </>
+        ))}
+      </>
+    );
+  };
+
+  console.log(Ast);
   return (
     <>
       <div className="canvas-main">
@@ -29,12 +75,8 @@ export default function Canvas() {
             <b>Abstract Syntax Tree</b>
           </p>
           <hr />
-          <p>This is the title 1</p>
-          <p>This is the Second Title and this is Long</p>
-          <p>
-            This is the Mini Title and this is highly long and may have more
-            context
-          </p>
+
+          <AstComponent />
         </div>
         <div className="canvas-outer">
           <div className="canvas-fontscale">

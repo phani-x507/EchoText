@@ -217,7 +217,7 @@ function Render(parsedText) {
     }
     if (line.type == "TABLETAG") {
       if (tableTagCounter == 0) {
-        text += '<table border=1 class="tabletype" >';
+        text += '<table  class="tabletype" >';
         tableTagCounter += 1;
       } else {
         text += "</table>";

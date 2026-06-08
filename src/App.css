@@ -14,6 +14,8 @@
   --canvas-h3-size: 17px;
   --canvas-p-size: 14px;
   --borders: 1px solid transparent;
+  --card-abs-borderRadius: 30px;
+  --canvas-table-border: 2px solid rgb(100, 100, 100, 0.45);
 }
 :root[data-theme="light"] {
   --bg-color: radial-gradient(
@@ -41,7 +43,7 @@
   --cards-border: 1px solid rgb(219, 219, 219);
   --codebox-bg-color: lavender;
   --codebox-text-color: black;
-  --card-shadow: 0px 0px 150px 1px rgb(200, 200, 200);
+  --card-shadow: 10px 0px 25px 1px rgb(200, 200, 240);
   --canvas-text-color: black;
 }
 
@@ -58,14 +60,18 @@
   --nav-bg-color: rgb(100, 100, 100, 0.3);
   --button-bg-color: #ededed;
   --button-text-color: #004aad;
-  --card-bg: rgb(40, 40, 40, 0.5);
+  --card-bg: rgb(100, 100, 100, 0.45);
   --card-text: white;
   --codebox-bg-color: rgb(0, 0, 0, 0.5);
   --codebox-text-color: white;
   --canvas-text-color: white;
   --nav-border: 1px solid transparent;
-  --cards-border: 1px solid transparent;
+  --cards-border: 1px solid rgba(255, 255, 255, 0.3);
   --card-shadow: 0px 0px 195px 1px rgb(10, 10, 10);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -137,25 +143,32 @@ body {
   grid-template-columns: 250px auto;
   border: var(--borders);
   /* position: fixed; */
-  height: 98vh;
+  /* height: 98vh; */
 }
 
 .canvas-abs {
   min-width: 250px;
-  background-color: var(--card-bg);
+  background-color: rgb(150, 150, 150, 0.3);
   color: var(--text-color);
   border: var(--cards-border);
-  border-radius: var(--card-border-radius);
-  box-shadow: var(--card-shadow);
+  border-radius: var(--card-abs-borderRadius);
+  backdrop-filter: blur(5px);
+  /* box-shadow: var(--card-shadow); */
   padding: 20px;
   overflow-y: scroll;
   margin-top: 45px;
   /* This line is used to make scrollbar inside the box when usewd border border-radius too much; */
   clip-path: inset(0 round var(--card-border-radius));
+  scrollbar-width: none;
+  position: relative;
+  height: 58vh;
+  top: 7%;
 }
 
-.canvas-abs p {
-  font-family: var(--sans-font);
+.canvas-abs a {
+  font-family: var(--mono-font);
+  text-decoration: none;
+  color: var(--text-color);
   margin: 6px;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -164,6 +177,12 @@ body {
   /* Modern standard properties */
   line-clamp: 1;
   overflow: hidden;
+  font-size: 13px;
+  color: deeppink;
+}
+
+.canvas-abs a small {
+  color: gray;
 }
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
@@ -171,10 +190,12 @@ body {
 .canvas-outer {
   border: var(--borders);
   overflow-y: scroll;
+  scroll-behavior: smooth;
   margin-left: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 98vh;
 }
 .canvas-fontscale {
   position: fixed;
@@ -194,6 +215,26 @@ body {
   box-sizing: border-box;
 
   min-width: 620px;
+}
+
+.canvasDiv table {
+  width: 100%;
+  border: var(--canvas-table-border);
+  padding: 10px 0px 12px 0px;
+  border-radius: 30px;
+}
+
+.canvasDiv table tr {
+  height: 25px;
+}
+.canvasDiv table tr td {
+  padding: 10px;
+  border-bottom: var(--canvas-table-border);
+}
+
+.canvasDiv table tr th {
+  padding: 10px;
+  border-bottom: var(--canvas-table-border);
 }
 
 .canvasDiv h1 {

@@ -72,13 +72,13 @@ export function Render(Text) {
       ast.push({ id: HashId, type: line.type });
     }
     if (line.type == "TITLE") {
-      text += '<h1 id=" ' + HashId + '">' + line.value + "</h1> \n";
+      text += '<h1 id="' + HashId + '">' + line.value + "</h1> \n";
     }
     if (line.type == "SUBTITLE") {
-      text += '<h2  id=" ' + HashId + '">' + line.value + "</h2> \n";
+      text += '<h2  id="' + HashId + '">' + line.value + "</h2> \n";
     }
     if (line.type == "MINITITLE") {
-      text += '<h3 id=" ' + HashId + '">' + line.value + "</h3> \n";
+      text += '<h3 id="' + HashId + '">' + line.value + "</h3> \n";
     }
     if (line.type == "TEXT") {
       text += "<p>" + line.value + "</p> \n";
@@ -103,7 +103,7 @@ export function Render(Text) {
     }
     if (line.type == "TABLETAG") {
       if (tableTagCounter == 0) {
-        text += '<table border=1 class="tabletype" >';
+        text += '<table  class="tabletype" >';
         tableTagCounter += 1;
       } else {
         text += "</table>";
@@ -130,5 +130,5 @@ export function Render(Text) {
     }
   });
 
-  return text;
+  return [text, ast];
 }
