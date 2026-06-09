@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { Data } from "./Data";
 import { Render } from "./RichTextEngine/Renderer";
 import parse from "html-react-parser";
+import MainCanvas from "./MainCanvas";
 
 export default function Canvas() {
+  const [editMode, SetEditMode] = useState(true);
   const [text, setText] = useState("");
   const [fontScale, setFontScale] = useState(4);
 
@@ -67,37 +69,48 @@ export default function Canvas() {
   };
 
   console.log(Ast);
-  return (
-    <>
-      <div className="canvas-main">
-        <div className="canvas-abs">
-          <p>
-            <b>Abstract Syntax Tree</b>
-          </p>
-          <hr />
 
-          <AstComponent />
+  if (!editMode) {
+    return (
+      <>
+        <div className="canvas-main">
+          <div className="canvas-abs">
+            <p>
+              <b>Abstract Syntax Tree</b>
+            </p>
+            <hr />
+
+            <AstComponent />
+          </div>
+          <div className="canvas-outer">
+            <div className="canvas-fontscale">
+              <button onClick={fontIncreaseHandler} type="">
+                +
+              </button>
+              <button onClick={fontDecreaseHandler} type="">
+                -
+              </button>
+            </div>
+            {/* Remember this when we need to change the font variable value in css, we can directly include varname in style tag and assign value to it */}
+
+            <div
+              id="CanvasDiv"
+              style={{ "--font-scale": fontScale + "px" }}
+              className="canvasDiv"
+            >
+              {parse(text)}
+            </div>
+          </div>
         </div>
+      </>
+    );
+  } else {
+    return (
+      <>
         <div className="canvas-outer">
-          <div className="canvas-fontscale">
-            <button onClick={fontIncreaseHandler} type="">
-              +
-            </button>
-            <button onClick={fontDecreaseHandler} type="">
-              -
-            </button>
-          </div>
-          {/* Remember this when we need to change the font variable value in css, we can directly include varname in style tag and assign value to it */}
-
-          <div
-            id="CanvasDiv"
-            style={{ "--font-scale": fontScale + "px" }}
-            className="canvasDiv"
-          >
-            {parse(text)}
-          </div>
+          <MainCanvas />
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  }
 }

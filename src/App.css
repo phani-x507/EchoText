@@ -13,7 +13,7 @@
   --canvas-h2-size: 20px;
   --canvas-h3-size: 17px;
   --canvas-p-size: 14px;
-  --borders: 1px solid transparent;
+  --borders: 1px solid red;
   --card-abs-borderRadius: 30px;
   --canvas-table-border: 2px solid rgb(100, 100, 100, 0.45);
 }
